@@ -20,6 +20,7 @@ pub fn main() !void {
     say_hi();
 }
 
+// This function is not called from Zig, but it's instead exported and called from C++.
 export fn hello_from_zig() callconv(.C) void {
     // print to std out
     const stdout_file = std.io.getStdOut().writer();

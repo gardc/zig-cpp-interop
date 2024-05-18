@@ -4,19 +4,19 @@ This works by exposing a C API from the C++ source defining an export interface,
 
 ```zig
 const exe = b.addExecutable(.{
-        .name = "zig-cpp-tet",
-        .root_source_file = b.path("src/main.zig"),
-        .target = target,
-        .optimize = optimize,
-    });
+    .name = "zig-cpp-test",
+    .root_source_file = b.path("src/main.zig"),
+    .target = target,
+    .optimize = optimize,
+});
 
-    // add the C++ source files to the executable
-    exe.addCSourceFiles(.{
-        .root = b.path("cpp-src/"),
-        .files = &.{"wrapper.cpp"},
-    });
-    exe.installHeadersDirectory(b.path("cpp-src/"), "", .{
-        .include_extensions = &.{"h"},
-    });
-    exe.linkLibCpp();
+// add the C++ source files to the executable
+exe.addCSourceFiles(.{
+    .root = b.path("cpp-src/"),
+    .files = &.{"wrapper.cpp"},
+});
+exe.installHeadersDirectory(b.path("cpp-src/"), "", .{
+    .include_extensions = &.{"h"},
+});
+exe.linkLibCpp();
 ```
